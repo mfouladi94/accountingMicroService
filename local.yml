@@ -59,10 +59,16 @@ services:
     ports: []
     command: /start-celerybeat
 
-  flower:
+  queueconsumer:
     <<: *django
-    image: accountingmicroservice_local_flower
-    container_name: accountingmicroservice_local_flower
-    ports:
-      - '5555:5555'
-    command: /start-flower
+    image: accountingmicroservice_local_queue
+    container_name: accountingmicroservice_local_queueconsumer
+    depends_on:
+      - redis
+      - postgres
+    ports: []
+    command: 'python consumers/rabbit_consumer.py'
+
+networks:
+  tcp1_default:
+    driver: bridge

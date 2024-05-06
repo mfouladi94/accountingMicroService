@@ -73,19 +73,18 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
-    "allauth",
-    "allauth.account",
-    "allauth.mfa",
-    "allauth.socialaccount",
+    # "allauth",
+    # "allauth.account",
+    # "allauth.mfa",
+    # "allauth.socialaccount",
     "django_celery_beat",
     "rest_framework",
-    "rest_framework.authtoken",
+    # "rest_framework.authtoken",
     "corsheaders",
     "drf_spectacular",
 ]
 
 LOCAL_APPS = [
-    "accountingmicroservice.users",
     "accountingmicroservice.wallet",
     "accountingmicroservice.ptransactions",
 ]
@@ -101,11 +100,11 @@ MIGRATION_MODULES = {"sites": "accountingmicroservice.contrib.sites.migrations"}
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
+    # "django.contrib.auth.backends.ModelBackend",
+    # "allauth.account.auth_backends.AuthenticationBackend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
-AUTH_USER_MODEL = "users.User"
+# AUTH_USER_MODEL = "A"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
 LOGIN_REDIRECT_URL = "users:redirect"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
@@ -145,7 +144,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "allauth.account.middleware.AccountMiddleware",
+    # "allauth.account.middleware.AccountMiddleware",
 ]
 
 # STATIC
@@ -185,13 +184,13 @@ TEMPLATES = [
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
+                # "django.contrib.auth.context_processors.auth",
                 "django.template.context_processors.i18n",
                 "django.template.context_processors.media",
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "accountingmicroservice.users.context_processors.allauth_settings",
+                # "accountingmicroservice.users.context_processors.allauth_settings",
             ],
         },
     },
@@ -300,33 +299,30 @@ CELERY_TASK_SEND_SENT_EVENT = True
 # django-allauth
 # ------------------------------------------------------------------------------
 ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
-# https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-# https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_EMAIL_REQUIRED = True
-# https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_USERNAME_REQUIRED = False
-# https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-# https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-# https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_ADAPTER = "accountingmicroservice.users.adapters.AccountAdapter"
-# https://docs.allauth.org/en/latest/account/forms.html
-ACCOUNT_FORMS = {"signup": "accountingmicroservice.users.forms.UserSignupForm"}
-# https://docs.allauth.org/en/latest/socialaccount/configuration.html
-SOCIALACCOUNT_ADAPTER = "accountingmicroservice.users.adapters.SocialAccountAdapter"
-# https://docs.allauth.org/en/latest/socialaccount/configuration.html
-SOCIALACCOUNT_FORMS = {"signup": "accountingmicroservice.users.forms.UserSocialSignupForm"}
+# # https://docs.allauth.org/en/latest/account/configuration.html
+# ACCOUNT_AUTHENTICATION_METHOD = "email"
+# # https://docs.allauth.org/en/latest/account/configuration.html
+# ACCOUNT_EMAIL_REQUIRED = True
+# # https://docs.allauth.org/en/latest/account/configuration.html
+# ACCOUNT_USERNAME_REQUIRED = False
+# # https://docs.allauth.org/en/latest/account/configuration.html
+# ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+# # https://docs.allauth.org/en/latest/account/configuration.html
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# # https://docs.allauth.org/en/latest/account/configuration.html
+# ACCOUNT_ADAPTER = "accountingmicroservice.users.adapters.AccountAdapter"
+# # https://docs.allauth.org/en/latest/account/forms.html
+# ACCOUNT_FORMS = {"signup": "accountingmicroservice.users.forms.UserSignupForm"}
+# # https://docs.allauth.org/en/latest/socialaccount/configuration.html
+# SOCIALACCOUNT_ADAPTER = "accountingmicroservice.users.adapters.SocialAccountAdapter"
+# # https://docs.allauth.org/en/latest/socialaccount/configuration.html
+# SOCIALACCOUNT_FORMS = {"signup": "accountingmicroservice.users.forms.UserSocialSignupForm"}
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
-    ),
+    "DEFAULT_AUTHENTICATION_CLASSES": [],
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
@@ -343,5 +339,5 @@ SPECTACULAR_SETTINGS = {
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     "SCHEMA_PATH_PREFIX": "/api/",
 }
-# Your stuff...
-# ------------------------------------------------------------------------------
+
+auth_service_url=env("auth_service_url")

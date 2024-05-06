@@ -26,13 +26,16 @@ urlpatterns += [
     # API base url
     path("api/v1/", include("config.api_router")),
     # DRF auth token
-    path("api/auth-token/", obtain_auth_token),
-    path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
-    path(
-        "api/docs/",
-        SpectacularSwaggerView.as_view(url_name="api-schema"),
-        name="api-docs",
-    ),
+    # path("api/auth-token/", obtain_auth_token),
+    # path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
+    # path("api/docs/",SpectacularSwaggerView.as_view(url_name="api-schema"),name="api-docs",),
+]
+
+urlpatterns += [
+
+    path("api/v1/wallets/", include("accountingmicroservice.wallet.urls")),
+    path("api/v1/transactions/", include("accountingmicroservice.ptransactions.urls")),
+
 ]
 
 if settings.DEBUG:

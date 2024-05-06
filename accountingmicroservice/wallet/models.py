@@ -1,11 +1,12 @@
 from django.db import models
-from accountingmicroservice.users.models import *
+
 
 
 class Wallet(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    balance = models.DecimalField(max_digits=10, decimal_places=2)
-    currency = models.CharField(max_length=3, default='USD')
+    userId = models.PositiveIntegerField(default=1)
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'Wallet for {self.user.username}'
+        return f'Wallet for {self.userId} - {self.balance}'

@@ -1,7 +1,10 @@
 from django.urls import path
-from .api import TransactionList, TransactionDetail
+from .api import TransactionList, TransactionDetail , TransactionCreate , public_view
 
 urlpatterns = [
-    path('', TransactionList.as_view()),
-    path('<pk>/', TransactionDetail.as_view()),
+    path('t/', TransactionList.as_view()),
+    path('t/<pk>/', TransactionDetail.as_view()),
+    path('t/create/', public_view),
+
+
 ]
